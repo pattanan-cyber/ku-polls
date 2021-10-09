@@ -1,8 +1,6 @@
 import datetime
-
 from django.test import TestCase
 from django.utils import timezone
-
 from polls.models import Question
 
 
@@ -77,3 +75,47 @@ class PollDatesTests(TestCase):
         end = timezone.now() + datetime.timedelta(hours=1)
         question_can_not_vote = Question(pub_date=end, end_date=time)
         self.assertIs(question_can_not_vote.can_vote(), False)
+
+
+
+
+
+
+
+
+
+#
+# def test_todo_appear_on_index(self):
+#     new_todo = Todo(description="Finish the exam")
+#     new_todo.save()
+#     response = self.client.get(reverse('todo:index'))
+#     self.assertContains(response, "Finish the exam")
+#     self.assertQuerysetEqual(response.context['todo_list'], ['<Todo: Finish the exam>'])
+#
+#
+# def test_done_new_todo(self):
+#     new_todo = Todo(description="Sleep")
+#     new_todo.save()
+#     url = reverse('todo:done', args=(new_todo.id,))
+#     response = self.client.get(url)
+#     index_response = self.client.get(reverse('todo:index'))
+#     new_todo_test = Todo.objects.get(description="Sleep")
+#     self.assertTrue(new_todo_test.done)
+#     self.assertQuerysetEqual(index_response.context['todo_list'], [])
+#
+#
+# def test_done_url_redirects_to_index(self):
+#     new_todo = Todo(description="Study other exam")
+#     new_todo.save()
+#     url = reverse('todo:done', args=(new_todo.id,))
+#     response = self.client.get(url)
+#     self.assertEqual(response.status_code, 302)
+#     self.assertRedirects(response, reverse('todo:index'))
+#
+#
+# def test_non_existing_id_done(self):
+#     new_todo = Todo(description="Exercise")
+#     new_todo.save()
+#     url = reverse('todo:done', args=(2,))
+#     response = self.client.get(url)
+#     self.assertEqual(response.status_code, 404)
