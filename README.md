@@ -1,5 +1,4 @@
-# KU Polls
-![Build Status](https://app.travis-ci.com/pattanan-cyber/ku-polls.svg?branch=main)
+# KU Polls ![Build Status](https://app.travis-ci.com/pattanan-cyber/ku-polls.svg?branch=main)
 
 A web application for conducting polls at [Kasetsart University](http://ku.ac.th).    
 Developed using Django Framework.
