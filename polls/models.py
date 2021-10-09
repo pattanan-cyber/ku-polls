@@ -1,17 +1,23 @@
+"""import user model timezone"""
 import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
 class Question(models.Model):
+    """set a question"""
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-    end_date = models.DateTimeField('date end')
+    pub_date = models.DateTimeField('date published', default=timezone.now()
+               - datetime.timedelta(seconds=1))
+    end_date = models.DateTimeField('end date', default=timezone.now()
+               + datetime.timedelta(seconds=1))
 
     def __str__(self):
+        """return str"""
         return self.question_text
 
     def was_published_recently(self):
+        """check is it public"""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
@@ -25,18 +31,20 @@ class Question(models.Model):
         return (self.pub_date <= now) and (now < self.end_date)
 
 class Choice(models.Model):
+    """set a choice"""
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
     def __str__(self):
+        """return str"""
         return self.choice_text
 
 
 class Vote(models.Model):
     """Vote Model.
     Args:
-        models : Vote details (question, choice, user)
+    models : Vote details (question, choice, user)
     """
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
