@@ -1,4 +1,3 @@
-yml
 language: python
 
 # you can use Python 3.7 instead
@@ -9,13 +8,32 @@ git:
   depth: 1
 
 install:
-  - pip install -r requirements.txt
-# script to run tests. Script can have many commands, one per line
-before_script:
-  - python manage.py migrate
-
+  - pip install coverage
+  - pip install django
+# script to run tests. Script can have many commands, one per line.
 script:
   - coverage run --source='.' manage.py test polls
 after_script:
   - bash <(curl -s https://codecov.io/bash)
 
+#
+#yml
+#language: python
+#
+## you can use Python 3.7 instead
+#python: "3.8"
+#
+## don't clone more than necessary
+#git:
+#  depth: 1
+#
+#install:
+#  - pip install -r requirements.txt
+## script to run tests. Script can have many commands, one per line
+#before_script:
+#  - python manage.py migrate
+#
+#script:
+#  - coverage run --source='.' manage.py test polls
+#after_script:
+#  - bash <(curl -s https://codecov.io/bash)
