@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 """import user model timezone"""
-=======
-"""ku polls model"""
->>>>>>> iteration2
+
 import datetime
 
 from django.contrib.auth.models import User
@@ -11,11 +8,7 @@ from django.utils import timezone
 
 
 class Question(models.Model):
-<<<<<<< HEAD
     """set a question"""
-=======
-    """check publish"""
->>>>>>> iteration2
 
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -42,11 +35,7 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-<<<<<<< HEAD
     """set a choice"""
-=======
-    """choice model"""
->>>>>>> iteration2
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
