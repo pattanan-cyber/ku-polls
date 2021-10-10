@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """requests to the polls"""
+=======
+"""view of polls"""
+>>>>>>> iteration2
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -9,6 +13,10 @@ from .models import Choice, Question
 
 class IndexView(generic.ListView):
     """index view"""
+<<<<<<< HEAD
+=======
+
+>>>>>>> iteration2
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
@@ -19,9 +27,12 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     """detail view"""
+<<<<<<< HEAD
+=======
+
+>>>>>>> iteration2
     model = Question
     template_name = 'polls/detail.html'
-
 
     def get_queryset(self):
         """Excludes any questions that aren't published yet."""
@@ -39,6 +50,7 @@ class DetailView(generic.DetailView):
 
 class ResultsView(generic.DetailView):
     """result view"""
+<<<<<<< HEAD
     model = Question
     template_name = 'polls/results.html'
 
@@ -64,6 +76,15 @@ def results(request, question_id):
 
 def vote(request, question_id):
     """vote the poll"""
+=======
+
+    model = Question
+    template_name = 'polls/results.html'
+
+
+def vote(request, question_id):
+    """vote"""
+>>>>>>> iteration2
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -79,4 +100,5 @@ def vote(request, question_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('polls:results',
+                                            args=(question.id,)))
