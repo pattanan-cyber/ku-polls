@@ -9,9 +9,7 @@ git:
   depth: 1
 
 install:
-  - pip install coverage
-  - pip install django
-  - pip install python-decouple
+  - pip install -r requirements.txt
 # script to run tests. Script can have many commands, one per line.
 script:
   - coverage run --source='.' manage.py test polls
