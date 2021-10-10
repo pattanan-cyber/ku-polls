@@ -1,9 +1,13 @@
+"""ku polls model"""
 import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
+
 class Question(models.Model):
+    """check publish"""
+
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     end_date = models.DateTimeField('date end')
@@ -22,9 +26,13 @@ class Question(models.Model):
 
     def can_vote(self):
         """if voting is currently allowed for this question,return true """
+        now = timezone.now()
         return (self.pub_date <= now) and (now < self.end_date)
 
+
 class Choice(models.Model):
+    """choice model"""
+
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
@@ -41,4 +49,5 @@ class Vote(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True,
+                             blank=True, on_delete=models.CASCADE)

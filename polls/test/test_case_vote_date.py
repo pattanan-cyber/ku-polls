@@ -13,25 +13,29 @@ class PollDatesTests(TestCase):
 
     def test_was_published_recently_with_future_question(self):
         """Test for was_published_recently().
-        was_published_recently() must returns False for questions whose pub_date is in the future.
+        was_published_recently() must returns False for
+        questions whose pub_date is in the future.
         """
-        time = timezone.now() + datetime.timedelta(days=30)
+        time = timezone.now() + datetime.timedelta(days=1)
         end_time = time+self.add_time_one_year
         future_question = Question(pub_date=time, end_date=end_time)
         self.assertIs(future_question.was_published_recently(), False)
 
     def test_was_published_recently_with_old_question(self):
         """Test for was_published_recently().
-        was_published_recently() must returns False for questions whose pub_date is older than 1 day.
+        was_published_recently() must returns
+        False for questions
+        whose pub_date is older than 1 day.
         """
-        time = timezone.now() - datetime.timedelta(days=1, seconds=1)
+        time = timezone.now() - datetime.timedelta(days=1)
         end_time = time+self.add_time_one_year
         old_question = Question(pub_date=time, end_date=end_time)
         self.assertIs(old_question.was_published_recently(), False)
 
     def test_was_published_recently_with_recent_question(self):
         """Test for was_published_recently().
-        was_published_recently() must returns True for questions whose pub_date is within the last day.
+        was_published_recently() must returns True for
+        questions whose pub_date is within the last day.
         """
         delta = datetime.timedelta(hours=23, minutes=59, seconds=59)
         time = timezone.now() - delta
@@ -49,8 +53,9 @@ class PollDatesTests(TestCase):
         self.assertIs(question_publish2.is_published(), True)
 
     def test_can_vote_with_current_question(self):
-        """The question is publish if it still on time.It should return True."""
-        time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
+        """The question is publish if it still on time.
+        It should return True."""
+        time = timezone.now() - datetime.timedelta(hours=23)
         end1 = timezone.now() + datetime.timedelta(hours=2)
         end2 = timezone.now() + datetime.timedelta(seconds=15)
         question_publish1 = Question(pub_date=time, end_date=end1)
@@ -59,8 +64,9 @@ class PollDatesTests(TestCase):
         self.assertIs(question_publish2.is_published(), True)
 
     def test_this_question_is_can_vote(self):
-        """The question can vote if it still on time.It should return True."""
-        time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
+        """The question can vote if it still on time.
+        It should return True."""
+        time = timezone.now() - datetime.timedelta(hours=23)
         end = timezone.now() + datetime.timedelta(hours=2)
         time1 = timezone.now() - datetime.timedelta(minutes=50)
         end1 = timezone.now() + datetime.timedelta(hours=10)
@@ -70,52 +76,9 @@ class PollDatesTests(TestCase):
         self.assertIs(question_can_vote2.can_vote(), True)
 
     def test_this_question_is_can_not_vote(self):
-        """The question can not vote if it still on time.It should return True."""
+        """The question can not vote if it still on time.
+        It should return True."""
         time = timezone.now() + datetime.timedelta(hours=20)
         end = timezone.now() + datetime.timedelta(hours=1)
         question_can_not_vote = Question(pub_date=end, end_date=time)
         self.assertIs(question_can_not_vote.can_vote(), False)
-
-
-
-
-
-
-
-
-
-#
-# def test_todo_appear_on_index(self):
-#     new_todo = Todo(description="Finish the exam")
-#     new_todo.save()
-#     response = self.client.get(reverse('todo:index'))
-#     self.assertContains(response, "Finish the exam")
-#     self.assertQuerysetEqual(response.context['todo_list'], ['<Todo: Finish the exam>'])
-#
-#
-# def test_done_new_todo(self):
-#     new_todo = Todo(description="Sleep")
-#     new_todo.save()
-#     url = reverse('todo:done', args=(new_todo.id,))
-#     response = self.client.get(url)
-#     index_response = self.client.get(reverse('todo:index'))
-#     new_todo_test = Todo.objects.get(description="Sleep")
-#     self.assertTrue(new_todo_test.done)
-#     self.assertQuerysetEqual(index_response.context['todo_list'], [])
-#
-#
-# def test_done_url_redirects_to_index(self):
-#     new_todo = Todo(description="Study other exam")
-#     new_todo.save()
-#     url = reverse('todo:done', args=(new_todo.id,))
-#     response = self.client.get(url)
-#     self.assertEqual(response.status_code, 302)
-#     self.assertRedirects(response, reverse('todo:index'))
-#
-#
-# def test_non_existing_id_done(self):
-#     new_todo = Todo(description="Exercise")
-#     new_todo.save()
-#     url = reverse('todo:done', args=(2,))
-#     response = self.client.get(url)
-#     self.assertEqual(response.status_code, 404)
