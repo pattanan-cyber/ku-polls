@@ -1,17 +1,21 @@
 language: python
 
-# you can use Python 3.7 instead
-python: "3.8"
+# you can use a different version of Python
+python: "3.6"
 
 # don't clone more than necessary
 git:
   depth: 1
 
+# Install dependencies
 install:
+  - pip install -r requirements.txt
   - pip install coverage
-  - pip install django
+
 # script to run tests. Script can have many commands, one per line.
 script:
-  - coverage run --source='.' manage.py test polls
+  - python -m unittest discover -p "*_test.py"
+  - coverage run -m unittest discover -p "*_test.py"
+
 after_script:
   - bash <(curl -s https://codecov.io/bash)
