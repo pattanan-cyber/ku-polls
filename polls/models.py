@@ -31,7 +31,7 @@ class Question(models.Model):
     def can_vote(self):
         """if voting is currently allowed for this question,return true """
         now = timezone.now()
-        return (self.pub_date <= now) and (now < self.end_date)
+        return (self.pub_date <= now) and (self.end_date is None or now <= self.end_date)
 
 
 class Choice(models.Model):
