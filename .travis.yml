@@ -9,13 +9,14 @@ git:
 
 # Install dependencies
 install:
-  - pip install -r requirements.txt
   - pip install coverage
-
+  - pip install django
+  - pip install python-decouple
 # script to run tests. Script can have many commands, one per line.
 script:
-  - python -m unittest discover -p "*_test.py"
-  - coverage run -m unittest discover -p "*_test.py"
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - coverage run --source='.' manage.py test polls
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)
