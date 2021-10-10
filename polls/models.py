@@ -1,16 +1,17 @@
 """import user model timezone"""
 import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
+
 class Question(models.Model):
     """set a question"""
+
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published', default=timezone.now()
-               - datetime.timedelta(seconds=1))
-    end_date = models.DateTimeField('end date', default=timezone.now()
-               + datetime.timedelta(seconds=1))
+    pub_date = models.DateTimeField('date published')
+    end_date = models.DateTimeField('end date', null=True)
 
     def __str__(self):
         """return str"""
@@ -30,8 +31,10 @@ class Question(models.Model):
         """if voting is currently allowed for this question,return true """
         return (self.pub_date <= now) and (now < self.end_date)
 
+
 class Choice(models.Model):
     """set a choice"""
+
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
@@ -49,4 +52,5 @@ class Vote(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True,
+                             blank=True, on_delete=models.CASCADE)
