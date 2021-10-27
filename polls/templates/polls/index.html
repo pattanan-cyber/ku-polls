@@ -1,7 +1,7 @@
 {% load static %}
-<p><font size="7">Ku-polls</font></p>
+<p><font size="90">Ku-polls</font></p>
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-
+<body>
 {% if messages %}
     <ul class="messages">
         {% for m in messages %}
@@ -25,3 +25,4 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+</body>
