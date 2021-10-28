@@ -1,28 +1,43 @@
-{% load static %}
-<p><font size="90">Ku-polls</font></p>
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+{% load static %}>
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/background.css' %}">
+<head>
+    <style>
+        h1{
+            color: black;
+            font-size: 130px;
+        }
+
+    </style>
+</head>
+
+
 <body>
-{% if messages %}
-    <ul class="messages">
-        {% for m in messages %}
-            <h3 class="{{m.error}}">{{ m }}</h3>
+    <center>
+     <h1>KU POLLS</h1>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for m in messages %}
+                <h3 class="{{m.error}}">{{ m }}</h3>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        Welcome, {{ user.username }}
+    {% else %}
+        <a> href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li><font size="5"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></font></li>
         {% endfor %}
-    </ul>
-{% endif %}
-
-{% if user.is_authenticated %}
-    Hello, {{ user.username }}
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
-{% endif %}
-
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><font size="5"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></font></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+    </center>
 </body>
