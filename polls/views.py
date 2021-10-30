@@ -50,30 +50,31 @@ class ResultsView(generic.DetailView):
 
 @login_required(login_url='/accounts/login/')
 def vote(request, question_id):
-    """Make choice be able to vote."""
-    user = request.user
-    # run this get_object_or_404 if fail return 404 page
+    """Vote for each question by using question_id."""
     question = get_object_or_404(Question, pk=question_id)
+    if not question.can_vote():
+        messages.error(request, "This poll is unavailable.")
+        return HttpResponseRedirect(reverse('polls:index'))
     try:
         choice_id = request.POST['choice']
         selected_choice = question.choice_set.get(pk=choice_id)
     except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
+        # redisplay the question voting form
         return render(request, 'polls/detail.html', {
             'question': question,
-            'error_message': "You didn't select a choice.",
+            'error_message': "You didn't selected a choice.",
         })
     else:
-        vote = get_vote_for_user(question, user)
-        # Always return an HttpResponseRedirect after successfully dealing
+        user = request.user
+        vote = get_vote_for_user(user, question)
         if not vote:
-            vote = Vote(user=user, choice=selected_choice)
+            Vote.objects.create(user=user, choice=selected_choice)
         else:
+            vote.choice
             vote.choice = selected_choice
         vote.save()
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('polls:results',
+                                            args=(question.id,)))
 
 
 def get_vote_for_user(question, user):
@@ -84,4 +85,4 @@ def get_vote_for_user(question, user):
         else:
             return votes[0]
     except Vote.DoesNotExist:
-        return None
+        return []

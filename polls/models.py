@@ -52,16 +52,12 @@ class Choice(models.Model):
         return count
 
 class Vote(models.Model):
-    """Vote Model.
-    Args:
-    models : Vote details (question, choice, user)
-    """
-    user = models.ForeignKey(
-             User,
-             null=False,
-             blank=False,
-             on_delete=models.CASCADE)
+    """Vote class for model."""
+
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Vote by {user.username}"
+        """return str"""
+        return f"Vote by {self.user.username}"
