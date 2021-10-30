@@ -11,7 +11,6 @@
     </style>
 </head>
 
-
 <body>
     <center>
      <h1>KU POLLS</h1>
@@ -27,7 +26,7 @@
     {% if user.is_authenticated %}
         Hello, {{ user.username }}
     {% else %}
-        You need to login before vote.<a href="{% url 'login' %}">Login</a>
+        You need to login before vote.<a href="{% url 'login' %}"><button class="Login">Login</button></a>
     {% endif %}
 
     {% if latest_question_list %}
@@ -39,6 +38,6 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
-
+    <a href="{% url 'logout' %}"><button class="Log out">Log out</button></a>
     </center>
 </body>
