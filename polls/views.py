@@ -49,7 +49,6 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-
 @login_required(login_url='/accounts/login/')
 def vote(request, question_id):
     """Vote for each question by using question_id."""
@@ -66,23 +65,16 @@ def vote(request, question_id):
             'error_message': "You didn't selected a choice.",
         })
     else:
-        # Record the vote
         user = request.user
-        # get the previous vote for this user(may not have)
         vote = get_vote_for_user(user, question)
-        # Case 1 user has not voted for this poll question yet
-        #        Create a new vote object
         if not vote:
             Votes.objects.create(user=user, choice=selected_choice)
         else:
-            # Case 2: user has already voted
-            # Modify the existing vote and save it
             vote.choice
             vote.choice = selected_choice
     vote.save()
     return HttpResponseRedirect(reverse('polls:results',
                                         args=(question.id,)))
-
 
 def logged_out(request):
     """Log out."""
