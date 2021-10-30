@@ -25,9 +25,9 @@
     {% endif %}
 
     {% if user.is_authenticated %}
-        Welcome, {{ user.username }}
+        Hello, {{ user.username }}
     {% else %}
-        <a> href="{% url 'login' %}">Login</a>
+        You need to login before vote.<a href="{% url 'login' %}">Login</a>
     {% endif %}
 
     {% if latest_question_list %}
@@ -39,5 +39,6 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
+
     </center>
 </body>

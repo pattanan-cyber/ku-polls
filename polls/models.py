@@ -7,12 +7,14 @@ from django.db import models
 from django.utils import timezone
 
 
+
 class Question(models.Model):
     """set a question"""
 
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     end_date = models.DateTimeField('end date', null=True)
+
 
     def __str__(self):
         """return str"""
@@ -39,20 +41,27 @@ class Choice(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    # votes = models.IntegerField(default=0)
 
     def __str__(self):
         """return str"""
         return self.choice_text
-
+    @property
+    def vote(self):
+        count = Vote.objects.filter(choice=self).count()
+        return count
 
 class Vote(models.Model):
     """Vote Model.
     Args:
     models : Vote details (question, choice, user)
     """
-
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+             User,
+             null=False,
+             blank=False,
+             on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=True,
-                             blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Vote by {user.username}"
