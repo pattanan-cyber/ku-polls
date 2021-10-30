@@ -44,20 +44,24 @@ class Choice(models.Model):
     # votes = models.IntegerField(default=0)
 
     def __str__(self):
-        """return str"""
-        return self.choice_text
+        return f"Vote by {self.user.username}"
     @property
     def vote(self):
-        count = Vote.objects.filter(choice=self).count()
+        count = Votes.objects.filter(choice=self).count()
         return count
 
-class Vote(models.Model):
-    """Vote class for model."""
+
+class Votes(models.Model):
+    """Class Vote"""
 
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
 
     def __str__(self):
-        """return str"""
-        return f"Vote by {self.user.username}"
+        return f"Vote by {self.user.user_name}"
+
+    @property
+    def question(self):
+        """Get question."""
+        return self.choice.question
