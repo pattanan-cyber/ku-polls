@@ -14,3 +14,12 @@ Developed using Django Framework.
 [Iteration 1 Plan](../../wiki/Iteration%201%20Plan)        
 [Iteration 2 Plan](../../wiki/Iteration%202%20Plan)      
 [Iteration 3 Plan](../../wiki/Iteration%203%20Plan)   
+
+## Running KU Polls
+
+Users provided by the initial data (users.json):
+
+| Username  | Password    |
+|-----------|-------------|
+| demo_1     | vote4me1    |
+| demo_2     | vote4me2    |
