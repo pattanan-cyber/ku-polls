@@ -324,42 +324,6 @@
   }
 },
 {
-  "model": "auth.permission",
-  "pk": 37,
-  "fields": {
-    "name": "Can add votes",
-    "content_type": 10,
-    "codename": "add_votes"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 38,
-  "fields": {
-    "name": "Can change votes",
-    "content_type": 10,
-    "codename": "change_votes"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 39,
-  "fields": {
-    "name": "Can delete votes",
-    "content_type": 10,
-    "codename": "delete_votes"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 40,
-  "fields": {
-    "name": "Can view votes",
-    "content_type": 10,
-    "codename": "view_votes"
-  }
-},
-{
   "model": "auth.user",
   "pk": 1,
   "fields": {
