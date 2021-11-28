@@ -44,7 +44,8 @@ class Choice(models.Model):
     # votes = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Vote by {self.user.username}"
+        return self.choice_text
+
     @property
     def vote(self):
         count = Votes.objects.filter(choice=self).count()

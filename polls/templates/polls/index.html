@@ -25,6 +25,7 @@
 
     {% if user.is_authenticated %}
         Hello, {{ user.username }}
+            <a href="{% url 'logout' %}"><button class="Log out">Log out</button></a>
     {% else %}
         You need to login before vote.<a href="{% url 'login' %}"><button class="Login">Login</button></a>
     {% endif %}
@@ -38,6 +39,6 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
-    <a href="{% url 'logout' %}"><button class="Log out">Log out</button></a>
+
     </center>
 </body>

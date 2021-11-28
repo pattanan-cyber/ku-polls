@@ -60,21 +60,27 @@ def vote(request, question_id):
         choice_id = request.POST['choice']
         selected_choice = question.choice_set.get(pk=choice_id)
     except (KeyError, Choice.DoesNotExist):
+        # redisplay the question voting form
         return render(request, 'polls/detail.html', {
             'question': question,
             'error_message': "You didn't selected a choice.",
         })
     else:
+        # Record the vote
         user = request.user
+        # get the previous vote for this user(may not have)
         vote = get_vote_for_user(user, question)
+        # Case 1 user has not voted for this poll question yet
+        #        Create a new vote object
         if not vote:
             Votes.objects.create(user=user, choice=selected_choice)
         else:
-            vote.choice
+            # Case 2: user has already voted
+            # Modify the existing vote and save it
             vote.choice = selected_choice
-    vote.save()
-    return HttpResponseRedirect(reverse('polls:results',
-                                        args=(question.id,)))
+        vote.save()
+        return HttpResponseRedirect(reverse('polls:results',
+                                            args=(question.id,)))
 
 def logged_out(request):
     """Log out."""

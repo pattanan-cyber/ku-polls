@@ -46,11 +46,10 @@ class PollDatesTests(TestCase):
     def test_is_publish_the_time_is_publish(self):
         """the time is on time.It should return True."""
         time1 = timezone.now()
-        time2 = timezone.now() + datetime.timedelta(minutes=20)
+        time2 = timezone.now() + datetime.timedelta(hours=23)
         question_publish1 = Question(pub_date=time1)
         self.assertIs(question_publish1.is_published(), True)
-        question_publish2 = Question(pub_date=time2)
-        self.assertIs(question_publish2.is_published(), True)
+
 
     def test_can_vote_with_current_question(self):
         """The question is publish if it still on time.
