@@ -5,6 +5,10 @@ from django.utils import timezone
 from django.urls import reverse
 from polls.models import Question
 
+def create_question(question_text, days):
+    """Create a question with the given `question_text` and published date."""
+    time = timezone.now() + datetime.timedelta(days=days)
+    return Question.objects.create(question_text=question_text, pub_date=time)
 
 class QuestionModelTests(TestCase):
     """Question model"""

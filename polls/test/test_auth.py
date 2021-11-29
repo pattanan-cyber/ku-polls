@@ -17,7 +17,7 @@ class UserAuthTest(TestCase):
                                "ere.com")
         self.user1.first_name = "Tester"
         self.user1.save()
-
+    #
     # def test_login_view(self):
     #     """Test that a user can login via the login view."""
     #     login_url = reverse("login")
