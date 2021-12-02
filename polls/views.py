@@ -99,7 +99,17 @@ def get_vote_for_user(user, poll_question):
         return votes[0]
     except Votes.DoesNotExist:
         return []
-
+def signup(request):
+    """Create new user."""
+    if request.method == 'POST':
+        User.objects.create_user(
+            request.POST['username'],
+            request.POST["email"],
+            request.POST["password"]
+        )
+        # success fully create new user and redirect
+        return redirect('login')
+    return render(request, 'registration/sign_up.html')
 
 
 
