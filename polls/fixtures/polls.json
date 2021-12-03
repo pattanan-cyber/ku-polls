@@ -5,7 +5,7 @@
   "fields": {
     "question_text": "Do you like python",
     "pub_date": "2021-09-12T00:00:00Z",
-    "end_date": null
+    "end_date": "2021-11-30T07:14:01Z"
   }
 },
 {
@@ -14,7 +14,7 @@
   "fields": {
     "question_text": "What is your favourite colour?",
     "pub_date": "2021-09-13T00:00:00Z",
-    "end_date": null
+    "end_date": "2021-11-22T07:13:52Z"
   }
 },
 {
@@ -23,7 +23,7 @@
   "fields": {
     "question_text": "Do you like ice-cream?",
     "pub_date": "2021-09-12T00:00:00Z",
-    "end_date": null
+    "end_date": "2021-11-20T07:13:43Z"
   }
 },
 {
@@ -32,7 +32,7 @@
   "fields": {
     "question_text": "what is 3+3?",
     "pub_date": "2021-09-13T12:00:00Z",
-    "end_date": null
+    "end_date": "2021-11-12T07:13:31Z"
   }
 },
 {
@@ -41,7 +41,34 @@
   "fields": {
     "question_text": "How old are u?",
     "pub_date": "2021-10-10T08:51:24Z",
-    "end_date": null
+    "end_date": "2021-11-20T07:13:15Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 6,
+  "fields": {
+    "question_text": "what is 10+3?",
+    "pub_date": "2021-12-03T06:10:48Z",
+    "end_date": "2021-12-23T06:10:54Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 7,
+  "fields": {
+    "question_text": "what is 14+3?",
+    "pub_date": "2021-12-03T06:50:35Z",
+    "end_date": "2021-12-21T06:50:38Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 8,
+  "fields": {
+    "question_text": "what is 10+3?hat is 200+3?",
+    "pub_date": "2021-12-03T10:35:02Z",
+    "end_date": "2021-12-22T10:35:11Z"
   }
 },
 {
@@ -165,6 +192,70 @@
   }
 },
 {
+  "model": "polls.choice",
+  "pk": 16,
+  "fields": {
+    "question": 6,
+    "choice_text": "13"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 6,
+    "choice_text": "10"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 18,
+  "fields": {
+    "question": 6,
+    "choice_text": "2"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 7,
+    "choice_text": "4"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 7,
+    "choice_text": "54"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 21,
+  "fields": {
+    "question": 7,
+    "choice_text": "17"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 22,
+  "fields": {
+    "question": 8,
+    "choice_text": "200"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 23,
+  "fields": {
+    "question": 8,
+    "choice_text": "203"
+  }
+},
+{
   "model": "polls.votes",
   "pk": 1,
   "fields": {
@@ -202,6 +293,54 @@
   "fields": {
     "user": 1,
     "choice": 13
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "choice": 14
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 7,
+  "fields": {
+    "user": 11,
+    "choice": 17
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 8,
+  "fields": {
+    "user": 12,
+    "choice": 17
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 9,
+  "fields": {
+    "user": 12,
+    "choice": 20
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 10,
+  "fields": {
+    "user": 11,
+    "choice": 20
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "choice": 22
   }
 }
 ]
