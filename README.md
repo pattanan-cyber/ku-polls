@@ -21,5 +21,5 @@ Users provided by the initial data (users.json):
 
 | Username  | Password    |
 |-----------|-------------|
-| demo_1     | vote4me1    |
-| demo_2     | vote4me2    |
+| demo_01     | 1234    |
+| demo_02     | 5678    |
